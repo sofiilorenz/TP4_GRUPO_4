@@ -8,8 +8,8 @@
 </head>
 <body>
 <a href="Inicio.jsp">Inicio</a>
-<a href= "ServletSeguro?Param=agregar"> Agregar seguro </a>
-<a href="ListarSeguros.jsp">Listar Seguros</a>
+<a href="ServletSeguro?Agregar=1">Agregar Seguros</a>
+<a href="ServletSeguro?Param=1">Listar Seguros</a>
 <br>
 <h1>Soy la pagina Inicio</h1>
 </body>
