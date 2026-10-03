@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TP4_GRUPO_4</title>
 </head>
 <body>
 <a href="Inicio.jsp">Inicio</a>

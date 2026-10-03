@@ -18,7 +18,7 @@ Integer proximoId = (Integer) request.getAttribute("proximoId");
 
 <meta charset="UTF-8">
 
-<title>Agregar Seguro</title>
+<title>TP4_GRUPO_4</title>
 
 </head>
 

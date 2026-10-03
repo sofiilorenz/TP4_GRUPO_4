@@ -40,6 +40,19 @@ public class ServletSeguro extends HttpServlet {
 			rdS.forward(request, response);
 			return;
 		}
+		
+		if(request.getParameter("btnFiltrar")!=null)
+		{
+			int idTipo = Integer.parseInt(request.getParameter("ddlTipoFiltro"));
+			ArrayList<Seguro> listaSeguros = sDao.obtenerSegurosPorTipo(idTipo);
+
+			request.setAttribute("listaS", listaSeguros);
+			request.setAttribute("listaTipos", tDao.listarTipos());
+
+			RequestDispatcher rdF = request.getRequestDispatcher("/ListarSeguros.jsp");
+			rdF.forward(request, response);
+			return;
+		}
 
 		if (request.getParameter("btnAceptar") != null) {
 			int filas = 0;
