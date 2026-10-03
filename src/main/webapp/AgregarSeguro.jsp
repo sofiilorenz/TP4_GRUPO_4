@@ -5,11 +5,9 @@
 <%@ page import="dominio.TipoSeguro"%>
 
 <%
-	ArrayList<TipoSeguro> listaTipos =
-		(ArrayList<TipoSeguro>) request.getAttribute("listaTipos");
+ArrayList<TipoSeguro> listaTipos = (ArrayList<TipoSeguro>) request.getAttribute("listaTipos");
 
-	Integer proximoId =
-		(Integer) request.getAttribute("proximoId");
+Integer proximoId = (Integer) request.getAttribute("proximoId");
 %>
 
 <!DOCTYPE html>
@@ -28,17 +26,9 @@
 <body>
 
 
-	<a href="Inicio.jsp">
-		Inicio
-	</a>
-
-	<a href="ServletSeguro?Param=agregar">
-		Agregar Seguros
-	</a>
-
-	<a href="ListarSeguros.jsp">
-		Listar Seguros
-	</a>
+<a href="Inicio.jsp">Inicio</a>
+<a href="ServletSeguro?Agregar=1">Agregar Seguros</a>
+<a href="ServletSeguro?Param=1">Listar Seguros</a>
 
 
 	<br>
@@ -52,96 +42,59 @@
 		</h1>
 
 
-		<br>
-
-
-		Id Seguros:
+		<br> Id Seguros:
 
 		<%
-		if(proximoId != null) {
+		if (proximoId != null) {
 		%>
 
-			<%= proximoId %>
+		<%=proximoId%>
 
 		<%
 		}
 		%>
 
-		<br>
+		<br> Descripcion: <input type="text" name="txtDescripcion">
 
-
-		Descripcion:
-
-		<input
-			type="text"
-			name="txtDescripcion">
-
-		<br>
-
-
-		Tipo de Seguro:
-
-		<select name="idTipo">
+		<br> Tipo de Seguro: <select name="idTipo">
 
 			<%
-			if(listaTipos != null) {
+			if (listaTipos != null) {
 
-				for(TipoSeguro t : listaTipos) {
+				for (TipoSeguro t : listaTipos) {
 			%>
 
-				<option value="<%= t.getIdTipo() %>">
-					<%= t.getDescripcion() %>
-				</option>
+			<option value="<%=t.getIdTipo()%>">
+				<%=t.getDescripcion()%>
+			</option>
 
 			<%
-				}
+			}
 			}
 			%>
 
-		</select>
+		</select> <br> Costo contratacion: <input type="text"
+			name="txtCostoContratacion"> <br> Costo Maximo
+		Asegurado: <input type="text" name="txtCostoAsegurado"> <br>
 
 
-		<br>
-
-
-		Costo contratacion:
-
-		<input
-			type="text"
-			name="txtCostoContratacion">
-
-		<br>
-
-
-		Costo Maximo Asegurado:
-
-		<input
-			type="text"
-			name="txtCostoAsegurado">
-
-		<br>
-
-
-		<input
-			type="submit"
-			name="btnAceptar"
-			value="Aceptar">
+		<input type="submit" name="btnAceptar" value="Aceptar">
 
 
 	</form>
 
 	<%
-	if(request.getAttribute("cantFilas") != null) {
+	if (request.getAttribute("cantFilas") != null) {
 		int filas = Integer.parseInt(request.getAttribute("cantFilas").toString());
-		if(filas == 1) {
+		if (filas == 1) {
 	%>
-		Seguro agregado con exito
+	Seguro agregado con exito
 	<%
-		} else {
+	} else {
 	%>
-		No se pudo agregar el seguro
+	No se pudo agregar el seguro
 	<%
-		}
+	}
 	}
 	%>
 

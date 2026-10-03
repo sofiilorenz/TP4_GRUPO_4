@@ -6,6 +6,7 @@ public class Seguro {
 	private int idTipo;
 	private int costoContratacion;
 	private int costoAsegurado;
+	private String descripcionTipo;
 
 	public Seguro() {
 
@@ -46,9 +47,17 @@ public class Seguro {
 	public int getCostoContratacion() {
 		return costoContratacion;
 	}
+	
+	public String getDescripcionTipo() {
+		return descripcionTipo;
+	}
 
 	public void setCostoContratacion(int costoContratacion) {
 		this.costoContratacion = costoContratacion;
+	}
+	
+	public void setDescripcionTipo(String descripcionTipo) {
+		this.descripcionTipo = descripcionTipo;
 	}
 
 	public int getCostoAsegurado() {
