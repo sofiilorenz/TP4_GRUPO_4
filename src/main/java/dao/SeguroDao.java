@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -100,6 +101,49 @@ public class SeguroDao {
 			Statement st = conn.createStatement();
 
 			ResultSet rs = st.executeQuery("SELECT s.idSeguro, s.descripcion, t.descripcion, s.costoContratacion, s.costoAsegurado FROM seguros s INNER JOIN tiposeguros t ON s.idTipo = t.idTipo");
+
+			while(rs.next()){
+
+				Seguro seguroRs = new Seguro();
+				seguroRs.setIdSeguro(rs.getInt(1));
+				seguroRs.setDescripcion(rs.getString(2));
+				seguroRs.setDescripcionTipo(rs.getString(3));
+				seguroRs.setCostoContratacion(rs.getInt(4));
+				seguroRs.setCostoAsegurado(rs.getInt(5));
+
+				lista.add(seguroRs);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try {
+				if(conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return lista;
+	}
+	
+	public ArrayList<Seguro> obtenerSegurosPorTipo(int idTipo) {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		ArrayList<Seguro> lista = new ArrayList<Seguro>();
+		Connection conn = null;
+		try{
+			conn = DriverManager.getConnection(host + dbName, user, pass);
+			String query = "SELECT s.idSeguro, s.descripcion, t.descripcion, s.costoContratacion, s.costoAsegurado FROM seguros s INNER JOIN tiposeguros t ON s.idTipo = t.idTipo WHERE s.idTipo = ?";
+			PreparedStatement pst = conn.prepareStatement(query);
+			pst.setInt(1, idTipo);
+
+			ResultSet rs = pst.executeQuery();
 
 			while(rs.next()){
 

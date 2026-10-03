@@ -19,7 +19,7 @@ if (request.getAttribute("listaTipos") != null) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TP4_GRUPO_4</title>
 </head>
 <body>
 	<a href="Inicio.jsp">Inicio</a>
@@ -29,18 +29,20 @@ if (request.getAttribute("listaTipos") != null) {
 	<h1>
 		<b>"Tipo de Seguros en la base de datos"</b>
 	</h1>
-	<br> Busqueda por tipo de seguros:
-	<select name="idTipo">
-		<%
-		if (listaTipos != null)
-			for (TipoSeguro t : listaTipos) {
-		%>
-		<option value="<%=t.getIdTipo()%>"><%=t.getDescripcion()%></option>
-		<%
-		}
-		%>
-	</select>
-	<input type="submit" name="btnFiltrar" value="Filtrar">
+	<form action="ServletSeguro" method="get">
+		Busqueda por tipo de seguros:
+		<select name="ddlTipoFiltro">
+			<%
+			if (listaTipos != null)
+				for (TipoSeguro t : listaTipos) {
+			%>
+			<option value="<%=t.getIdTipo()%>"><%=t.getDescripcion()%></option>
+			<%
+			}
+			%>
+		</select>
+		<input type="submit" name="btnFiltrar" value="Filtrar">
+	</form>
 	<br>
 	<table border="1">
 		<tr>
